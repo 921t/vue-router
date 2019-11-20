@@ -13,10 +13,14 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/users', function (Request $request) {
-    if (rand(1, 10) < 3) {
-        abort(500, 'We could not retrieve the users');
-    }
+// Route::get('/users', function (Request $request) {
+//     if (rand(1, 10) < 3) {
+//         abort(500, 'We could not retrieve the users');
+//     }
+//
+//     return factory(\App\User::class, 10)->make();
+// });
 
-    return factory(\App\User::class, 10)->make();
+Route::namespace('Api')->group(function () {
+    Route::get('users', 'UsersController@index');
 });
